@@ -24,6 +24,13 @@ CONF = 0.3
 IMG_SIZE = 640
 BATCH_SIZE = 16
 
+# ==================== НАСТРОЙКИ (ЗАШИТЫ В КОД) ====================
+# Путь к модели относительно папки с программой
+MODEL_RELATIVE_PATH = os.path.join('model_weights', 'best.pt')
+CONF = 0.3
+IMG_SIZE = 640
+BATCH_SIZE = 16
+
 # ==================== ОПРЕДЕЛЕНИЕ ПУТИ К МОДЕЛИ ====================
 def get_model_path():
     """Определяет путь к модели (рядом с exe или скриптом)"""
@@ -37,6 +44,14 @@ def get_model_path():
     return os.path.join(base_dir, MODEL_RELATIVE_PATH)
 
 MODEL_PATH = get_model_path()
+
+# Проверка: если модели нет — падаем сразу с понятным сообщением
+if not os.path.isfile(MODEL_PATH):
+    raise FileNotFoundError(
+        f"Модель не найдена: {MODEL_PATH}\n"
+        f"Положите файл 'best.pt' в папку 'model_weights' рядом с программой.\n"
+        f"Скачать можно здесь: https://huggingface.co/AT3MI/trash-detector-yolo11s"
+    )
 
 # ==================== ФУНКЦИЯ НОРМАЛИЗАЦИИ ПУТИ ====================
 def normalize_path(path_str):

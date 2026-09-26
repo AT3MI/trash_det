@@ -13,11 +13,43 @@ from tqdm import tqdm
 import traceback
 import os
 import re
+# ==================== ЗАГРУЗКА МОДЕЛИ С HUGGINGFACE ====================
+from huggingface_hub import hf_hub_download
 
+# ⚠️ ЗАМЕНИ НА СВОЙ HF-РЕПОЗИТОРИЙ
+HF_REPO_ID = "AT3MI/trash-detector-yolo11s"
+HF_FILENAME = "best.pt"
+
+# Локальная папка и путь
+MODEL_DIR = Path("model_weights")
+LOCAL_MODEL_PATH = MODEL_DIR / HF_FILENAME
+
+def ensure_model() -> Path:
+    """
+    Гарантирует, что best.pt есть локально.
+    Если нет — создаёт model_weights/ и качает с HuggingFace.
+    Возвращает путь к файлу.
+    """
+    if LOCAL_MODEL_PATH.exists():
+        print(f"✅ Модель найдена: {LOCAL_MODEL_PATH}")
+        return LOCAL_MODEL_PATH
+
+    print(f"⏳ Модель не найдена. Скачиваю с HuggingFace: {HF_REPO_ID}")
+    MODEL_DIR.mkdir(parents=True, exist_ok=True)
+
+    downloaded = hf_hub_download(
+        repo_id=HF_REPO_ID,
+        filename=HF_FILENAME,
+        local_dir=str(MODEL_DIR),
+    )
+    print(f"✅ Модель скачана: {downloaded}")
+    return Path(downloaded)
+
+# ======================================================================
 # ==================== НАСТРОЙКИ ====================
 INPUT_FILE = 'выполнено с фото из путевого.xlsx'
 OUTPUT_FILE = f'площадки_с_завалами_{datetime.now().strftime("%Y%m%d_%H%M%S")}.xlsx'
-MODEL_PATH = 'runs/segment/train/weights/best.pt'
+MODEL_PATH = str(ensure_model())
 CONF = 0.3
 IMG_SIZE = 640
 BATCH_SIZE = 16
