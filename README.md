@@ -42,9 +42,10 @@ python -m pip install -r requirements.txt
 
 ⏱ Займёт 5–15 минут (torch и ultralytics тянут много).
 
-### 4. Запустить
+### 4. Запустить сначала check_photos.py для скачивания best.pt, потом непосредственно interface_check.py для работы с GUI
 
 ```bash
+python check_photos.py
 python interface_check.py
 ```
 
