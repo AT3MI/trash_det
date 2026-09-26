@@ -1,0 +1,68 @@
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+*.egg
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ---------- Виртуальные окружения ----------
+.venv/
+venv/
+env/
+ENV/
+
+# ---------- IDE ----------
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ---------- PyInstaller ----------
+build/
+dist/
+*.manifest
+
+# ---------- YOLO / Ultralytics ----------
+# папка результатов обучения (логи, промежуточные чекпоинты)
+runs/
+*.cache
+# предобученные веса YOLO — качаются автоматически
+yolo*.pt
+yolo*.yaml
+
+# ---------- Модели ----------
+# свои обученные веса — только на HuggingFace
+model_weights/
+
+# ---------- Данные ----------
+dataset/
+data/
+*.zip
+*.tar.gz
+
+# ---------- Документы / таблицы ----------
+*.xlsx
+*.xls
+*.docx
+*.doc
+
+# ---------- Логи ----------
+*.log
+wandb/
+lightning_logs/
+tensorboard/
+
+# ---------- OS ----------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------- Прочее ----------
+*.tmp
+*.bak
