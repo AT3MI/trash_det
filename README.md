@@ -45,7 +45,7 @@ python -m pip install -r requirements.txt
 ### 4. Запустить
 
 ```bash
-python predict.py
+python interface_check.py
 ```
 
 При первом запуске модель `best.pt` (~20 МБ) автоматически скачается с HuggingFace в папку `model_weights/`.
@@ -57,7 +57,7 @@ python predict.py
 | Скрипт | Что делает | Модель |
 |---|---|---|
 | `predict.py` | Инференс на изображениях | скачивается с HF |
-| `check_photos.py` | Пакетная обработка фото из `.xlsx` | скачивается с HF |
+| `check_photos.py` | Пакетная обработка фото из `.xlsx` |
 | `interface_check.py` | GUI-приложение | ищет `model_weights/best.pt` |
 | `train.py` | Обучение модели | требует датасет |
 
