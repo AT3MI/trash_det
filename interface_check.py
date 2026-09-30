@@ -19,13 +19,6 @@ import threading
 
 # ==================== НАСТРОЙКИ (ЗАШИТЫ В КОД) ====================
 # Путь к модели относительно папки с программой
-MODEL_RELATIVE_PATH = os.path.join('runs', 'segment', 'train', 'weights', 'best.pt')
-CONF = 0.3
-IMG_SIZE = 640
-BATCH_SIZE = 16
-
-# ==================== НАСТРОЙКИ (ЗАШИТЫ В КОД) ====================
-# Путь к модели относительно папки с программой
 MODEL_RELATIVE_PATH = os.path.join('model_weights', 'best.pt')
 CONF = 0.3
 IMG_SIZE = 640
